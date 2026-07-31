@@ -63,3 +63,67 @@ class Flower(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ("Pending", "Pending"),
+        ("Processing", "Processing"),
+        ("Completed", "Completed"),
+        ("Cancelled", "Cancelled"),
+    ]
+
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    email = models.EmailField()
+
+    phone = models.CharField(max_length=20)
+
+    address = models.CharField(max_length=255)
+
+    city = models.CharField(max_length=100)
+
+    country = models.CharField(max_length=100)
+
+    zip_code = models.CharField(max_length=20)
+
+    total_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="Pending",
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order #{self.id}"
+    
+    
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name="items",
+    )
+
+    flower = models.ForeignKey(
+        Flower,
+        on_delete=models.CASCADE,
+    )
+
+    quantity = models.PositiveIntegerField(default=1)
+
+    price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+    )
+
+    def __str__(self):
+        return f"{self.flower.name} x {self.quantity}"

@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import Flower
+from .models import Flower, Order, OrderItem
 
+admin.site.register(Order)
+admin.site.register(OrderItem)
 
 @admin.register(Flower)
 class FlowerAdmin(admin.ModelAdmin):
@@ -27,3 +29,5 @@ class FlowerAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         "slug": ("name",)
     }
+    
+    

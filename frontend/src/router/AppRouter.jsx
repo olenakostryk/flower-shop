@@ -11,6 +11,7 @@ import Checkout from "../pages/Checkout";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
+import OrderSuccess from "../pages/OrderSuccess";
 
 export default function AppRouter() {
   return (
@@ -28,6 +29,10 @@ export default function AppRouter() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+          <Route
+  path="/order-success"
+  element={<OrderSuccess />}
+/>
         </Routes>
       </main>
 

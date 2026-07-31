@@ -1,7 +1,13 @@
 from rest_framework import generics
 from .models import Flower
 from .serializers import FlowerSerializer
+from .models import Order
+from .serializers import OrderSerializer
 
+
+class OrderCreateAPIView(generics.CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
 
 class FlowerListAPIView(generics.ListAPIView):
     serializer_class = FlowerSerializer

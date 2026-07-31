@@ -25,3 +25,7 @@ export const getFlower = async (slug) => {
   const response = await api.get(`/flowers/${slug}/`);
   return response.data;
 };
+export const createOrder = async (orderData) => {
+  const response = await api.post("/orders/", orderData);
+  return response.data;
+};
