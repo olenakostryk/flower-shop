@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import { FiSearch, FiShoppingBag } from "react-icons/fi";
+import { useCart } from "../hooks/useCart";
 
 export default function Navbar() {
+     const { totalItems } = useCart();
+
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-pink-100 shadow-sm">
       <div className="max-w-7xl mx-auto h-20 px-8 flex items-center justify-between">
@@ -99,21 +102,24 @@ export default function Navbar() {
             <FiSearch />
           </button>
 
-          <Link
-            to="/cart"
-            className="relative text-2xl text-gray-700 hover:text-pink-600 transition"
-          >
-            <FiShoppingBag />
+         <Link
+  to="/cart"
+  className="relative"
+>
+  Cart
 
-            <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-pink-600 text-white text-xs flex items-center justify-center">
-              2
-            </span>
+  {totalItems > 0 && (
+    <span className="ml-2 rounded-full bg-pink-600 px-2 py-1 text-xs text-white">
+      {totalItems}
+    </span>
+  )}
+</Link>
 
-          </Link>
 
         </div>
 
       </div>
     </header>
   );
+  
 }

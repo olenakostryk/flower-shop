@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { getFlower } from "../services/flowerService";
+import { useCart } from "../hooks/useCart";
 
 export default function Product() {
   const { slug } = useParams();
+  const { addToCart } = useCart();
 
   const [flower, setFlower] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -99,7 +101,9 @@ export default function Product() {
 
           </div>
 
-          <button className="mt-10 flex items-center gap-3 rounded-full bg-pink-600 px-8 py-4 text-white font-semibold transition hover:bg-pink-700">
+          <button 
+            onClick={() => addToCart(flower)}
+            className="mt-10 flex items-center gap-3 rounded-full bg-pink-600 px-8 py-4 text-white font-semibold transition hover:bg-pink-700">
 
             <FiShoppingBag />
 
