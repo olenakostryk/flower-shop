@@ -6,12 +6,13 @@ import Footer from "../components/Footer";
 import Home from "../pages/Home";
 import Shop from "../pages/Shop";
 import Product from "../pages/Product";
-import Cart from "../pages/CartItem";
 import Checkout from "../pages/Checkout";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import OrderSuccess from "../pages/OrderSuccess";
+import notFound from "../pages/NotFound";
+import Cart from "../pages/Cart";
 
 export default function AppRouter() {
   return (
@@ -33,6 +34,7 @@ export default function AppRouter() {
   path="/order-success"
   element={<OrderSuccess />}
 />
+<Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 

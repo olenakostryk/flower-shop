@@ -1,9 +1,20 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+  const savedCart = localStorage.getItem("cart");
+
+  if (savedCart) {
+    return JSON.parse(savedCart);
+  }
+
+  return [];
+});
+useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+}, [cartItems]);
 
   const addToCart = (flower) => {
     setCartItems((prev) => {
@@ -49,9 +60,10 @@ export function CartProvider({ children }) {
     );
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
+const clearCart = () => {
+  setCartItems([]);
+  localStorage.removeItem("cart");
+};
 
   const totalItems = useMemo(() => {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0);

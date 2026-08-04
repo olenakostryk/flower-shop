@@ -3,16 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { createOrder } from "../services/orderService";
 import { useCart } from "../hooks/useCart";
 
-const [formData, setFormData] = useState({
-  first_name: "",
-  last_name: "",
-  email: "",
-  phone: "",
-  address: "",
-  city: "",
-  country: "",
-  zip_code: "",
-});
 
  const handleChange = (e) => {
   setFormData({
@@ -22,7 +12,18 @@ const [formData, setFormData] = useState({
 };
 
 export default function Checkout() {
-  const { cartItems, totalPrice } = useCart();
+
+
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    country: "",
+    zip_code: "",
+  });
 
 const navigate = useNavigate();
 
