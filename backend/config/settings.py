@@ -159,8 +159,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://flower-shop-ivory-mu.vercel.app",
 ]
-
 CORS_ALLOW_CREDENTIALS = True
 
 # --------------------------------------------------
